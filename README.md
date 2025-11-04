@@ -4,17 +4,17 @@ Responsive, mobile-friendly React app that pulls data from the Atlassian Marketp
 
 [![Maintainability](https://qlty.sh/gh/scottohara/projects/atlassian-marketplace-dashboard/maintainability.svg)](https://qlty.sh/gh/scottohara/projects/atlassian-marketplace-dashboard)
 
-### Desktop
+## Desktop
 
-#### Dark
+### Dark
 
 ![Desktop (dark)](./desktop_dark.png "Desktop (dark)")
 
-#### Light
+### Light
 
 ![Desktop (light)](./desktop_light.png "Desktop (light)")
 
-### Phone
+## Phone
 
 | Dark                                             | Light                                               |
 | ------------------------------------------------ | --------------------------------------------------- |
