@@ -1,6 +1,8 @@
+import { SvelteDate } from "svelte/reactivity";
+
 function yesterday(): string {
 	const DATE_LENGTH = 10,
-		today = new Date();
+		today = new SvelteDate();
 
 	today.setDate(today.getDate() - 1);
 
