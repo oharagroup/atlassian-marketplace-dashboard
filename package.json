@@ -16,14 +16,14 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "3.0.10",
-		"@sveltejs/kit": "2.49.0",
+		"@sveltejs/kit": "2.49.1",
 		"@sveltejs/vite-plugin-svelte": "6.2.1",
 		"eslint": "9.39.1",
 		"eslint-config-oharagroup": "5.2.0",
-		"prettier": "3.6.2",
+		"prettier": "3.7.3",
 		"svelte": "5.45.4",
 		"svelte-check": "4.3.4",
 		"typescript": "5.9.3",
-		"vite": "7.2.4"
+		"vite": "7.2.6"
 	}
 }
