@@ -3,15 +3,13 @@ name: Deploy to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
 
   workflow_dispatch:
 
 permissions: {}
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+concurrency: pages
 
 jobs:
   build:
