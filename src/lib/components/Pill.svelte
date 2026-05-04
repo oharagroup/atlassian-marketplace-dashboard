@@ -15,21 +15,16 @@
 </div>
 
 <style>
-	@media (prefers-color-scheme: light) {
-		div {
-			--pill-bg-color: color-mix(in oklch, var(--pill-color) 18%, white);
-			--pill-ink-color: color-mix(in oklch, var(--pill-color) 68%, black);
-		}
-	}
-
-	@media (prefers-color-scheme: dark) {
-		div {
-			--pill-bg-color: color-mix(in oklch, var(--pill-color) 30%, black);
-			--pill-ink-color: color-mix(in oklch, var(--pill-color) 68%, white);
-		}
-	}
-
 	div {
+		--pill-bg-color: light-dark(
+			color-mix(in oklch, var(--pill-color) 18%, white),
+			color-mix(in oklch, var(--pill-color) 30%, black)
+		);
+		--pill-ink-color: light-dark(
+			color-mix(in oklch, var(--pill-color) 68%, black),
+			color-mix(in oklch, var(--pill-color) 68%, white)
+		);
+
 		display: flex;
 		gap: 0.4rem;
 		flex: 0 0 42%;

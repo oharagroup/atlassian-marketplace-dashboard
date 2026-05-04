@@ -14,36 +14,6 @@
 
 <style>
 	:global {
-		@media (prefers-color-scheme: light) {
-			:root {
-				--surface: oklch(96.115% 0.00011 271.152);
-				--surface-container: var(--white);
-
-				--text-primary: var(--black);
-				--text-secondary: oklch(59.987% 0.00007 271.152);
-
-				--border-primary: oklch(90.67% 0.0001 271.152);
-				--border-secondary: var(--border-primary);
-
-				--grey: oklch(99% 0 0);
-			}
-		}
-
-		@media (prefers-color-scheme: dark) {
-			:root {
-				--surface: var(--black);
-				--surface-container: oklch(20.463% 0.00002 271.152);
-
-				--text-primary: var(--white);
-				--text-secondary: oklch(71.547% 0.00008 271.152);
-
-				--border-primary: var(--green);
-				--border-secondary: var(--text-secondary);
-
-				--grey: oklch(10% 0 0);
-			}
-		}
-
 		:root {
 			color-scheme: light dark;
 
@@ -57,6 +27,17 @@
 			--yellow: oklch(90% 0.12 95);
 			--purple: oklch(60% 0.14 320);
 			--red: oklch(62% 0.17 25);
+
+			--surface: light-dark(oklch(96.115% 0.00011 271.152), var(--black));
+			--surface-container: light-dark(var(--white), oklch(20.463% 0.00002 271.152));
+
+			--text-primary: light-dark(var(--black), var(--white));
+			--text-secondary: light-dark(oklch(59.987% 0.00007 271.152), oklch(71.547% 0.00008 271.152));
+
+			--border-primary: light-dark(oklch(90.67% 0.0001 271.152), var(--green));
+			--border-secondary: light-dark(var(--border-primary), var(--text-secondary));
+
+			--grey: light-dark(oklch(99% 0 0), oklch(10% 0 0));
 		}
 
 		body {
