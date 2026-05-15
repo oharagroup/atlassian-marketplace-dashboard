@@ -1,6 +1,6 @@
 # atlassian-marketplace-dashboard
 
-Responsive, mobile-friendly React app that pulls data from the Atlassian Marketplace API for add-on sales, and displays the results as a set of cards.
+Responsive, mobile-friendly SvelteKit app that pulls data from the Atlassian Marketplace API for add-on sales, and displays the results as a set of cards.
 
 [![Maintainability](https://qlty.sh/gh/scottohara/projects/atlassian-marketplace-dashboard/maintainability.svg)](https://qlty.sh/gh/scottohara/projects/atlassian-marketplace-dashboard)
 
