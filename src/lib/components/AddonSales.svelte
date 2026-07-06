@@ -47,7 +47,7 @@
 		byPlatform: TotalsByPlatform;
 	};
 
-	const	totals: TotalsBySaleTypeAndPlatform = $derived(
+	const	totals = $derived(
 		transactions.reduce((acc: TotalsBySaleTypeAndPlatform, trx): TotalsBySaleTypeAndPlatform => {
 			const { saleType, hosting, vendorAmount } = trx.purchaseDetails;
 

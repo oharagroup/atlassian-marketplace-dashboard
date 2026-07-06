@@ -57,9 +57,9 @@
 
 	type Totals = Total & { bySaleType: TotalsBySaleType };
 
-	const	totals: Totals = $derived(
+	const	totals = $derived(
 		transactionsBySalesType.total.series.reduce((acc: Totals, { name, elements }: Series): Totals => {
-			const total: Total = elements.reduce((sum: Total, { count, revenue }: Total): Total => {
+			const total = elements.reduce((sum: Total, { count, revenue }: Total): Total => {
 				sum.count += count;
 				sum.revenue += revenue;
 
@@ -84,9 +84,9 @@
 			}
 		})
 	),
-		totalsByPlatform: TotalsByPlatform = $derived(
+		totalsByPlatform = $derived(
 			transactionsByPlatform.total.series.reduce((acc: TotalsByPlatform, { name, elements }: Series): TotalsByPlatform => {
-				const total: Total = elements.reduce((sum: Total, { count, revenue }: Total): Total => {
+				const total = elements.reduce((sum: Total, { count, revenue }: Total): Total => {
 					sum.count += count;
 					sum.revenue += revenue;
 
