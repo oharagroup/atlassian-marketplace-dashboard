@@ -1,30 +1,28 @@
 <script lang="ts">
-	import { type Addons, getAddons } from "$lib/api/client";
-	import Addon from "$lib/components/Addon.svelte";
+	import { type Apps, getApps } from "$lib/api/client";
+	import App from "$lib/components/App.svelte";
 	import Boundary from "./Boundary.svelte";
 	import Loading from "./Loading.svelte";
 	import { settings } from "$lib/state/settings.svelte";
 	import { useAsyncEffect } from "$lib/utils/async-effect.svelte";
 
-	let	addons: Addons = $state({
-		_embedded: {
-			addons: []
-		}
+	let	apps: Apps = $state({
+		items: []
 	}),
 		loading = $state(false),
 		error: Error | null = $state(null);
 
 	useAsyncEffect(
 		async (signal: AbortSignal): Promise<void> => {
-			if (!settings.vendorId) {
+			if (!settings.developerId) {
 				return;
 			}
 
-			addons = await getAddons(settings.vendorId, signal);
+			apps = await getApps(settings.developerId, signal);
 		},
 		(isLoading: boolean): boolean => (loading = isLoading),
 		(e: Error | null): Error | null => (error = e),
-		(): unknown => [settings.vendorId]
+		(): unknown => [settings.developerId]
 	);
 
 </script>
@@ -32,8 +30,8 @@
 <Boundary {error}>
 	<Loading {loading}/>
 	<ul>
-		{#each addons._embedded.addons as addon (addon.key)}
-			<Addon {addon}/>
+		{#each apps.items as app (app.productId)}
+			<App {app}/>
 		{/each}
 	</ul>
 </Boundary>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Addons from "$lib/components/Addons.svelte";
+	import Apps from "$lib/components/Apps.svelte";
 	import Header from "$lib/components/Header.svelte";
 </script>
 
 <Header/>
-<Addons/>
+<Apps/>

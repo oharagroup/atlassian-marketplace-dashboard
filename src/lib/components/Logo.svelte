@@ -1,11 +1,10 @@
 <script lang="ts">
-	import type { Logo } from "$lib/api/client";
-
-	const { _embedded }: Logo = $props();
+	const { iconFileId }: { iconFileId: string } = $props(),
+		src = $derived(`https://marketplace.atlassian.com/product-listing/files/${iconFileId}`);
 
 </script>
 
-<img alt="logo" src={_embedded.logo._links.image.href}/>
+<img alt="logo" {src}/>
 
 <style>
 	img {

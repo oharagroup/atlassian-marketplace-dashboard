@@ -27,8 +27,8 @@
 			<input autocomplete="current-password" type="password" bind:value={newSettings.password}/>
 		</label>
 		<label>
-			Vendor ID
-			<input type="text" bind:value={newSettings.vendorId}/>
+			Developer ID
+			<input type="text" bind:value={newSettings.developerId}/>
 		</label>
 		<label>
 			API URL

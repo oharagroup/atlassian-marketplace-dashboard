@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Addon, type Total, type TotalsByPlatform, type TotalsBySaleType, type Transaction, getTransactions } from "$lib/api/client";
+	import { type App, type Total, type TotalsByPlatform, type TotalsBySaleType, type Transaction, getTransactions } from "$lib/api/client";
 	import Boundary from "./Boundary.svelte";
 	import Loading from "./Loading.svelte";
 	import Sales from "./Sales.svelte";
@@ -7,7 +7,7 @@
 	import { settings } from "$lib/state/settings.svelte";
 	import { useAsyncEffect } from "$lib/utils/async-effect.svelte";
 
-	const { addon }: { addon: Addon } = $props();
+	const { app }: { app: App } = $props();
 
 	let	transactions: Transaction[] = $state([]),
 		loading = $state(false),
@@ -15,13 +15,13 @@
 
 	useAsyncEffect(
 		async (signal: AbortSignal): Promise<void> => {
-			if (!settings.vendorId || !dateRange.start || !dateRange.end) {
+			if (!settings.developerId || !dateRange.start || !dateRange.end) {
 				return;
 			}
 
 			const txnsIter = getTransactions(
-				settings.vendorId,
-				addon.key,
+				settings.developerId,
+				app.productId,
 				dateRange.start,
 				dateRange.end,
 				signal
@@ -36,7 +36,7 @@
 		(isLoading: boolean): boolean => (loading = isLoading),
 		(e: Error | null): Error | null => (error = e),
 		(): unknown => [
-			settings.vendorId,
+			settings.developerId,
 			dateRange.start,
 			dateRange.end
 		]

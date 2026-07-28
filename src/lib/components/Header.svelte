@@ -1,7 +1,7 @@
 <script lang="ts">
 	import DateRange from "$lib/components/DateRange.svelte";
+	import DeveloperSales from "./DeveloperSales.svelte";
 	import Settings from "$lib/components/Settings.svelte";
-	import VendorSales from "./VendorSales.svelte";
 
 	let	showSettings = $state(false);
 
@@ -12,7 +12,7 @@
 
 <header>
 	<section class="total-sales">
-		<VendorSales/>
+		<DeveloperSales/>
 	</section>
 	<div class="period">
 		<DateRange/>

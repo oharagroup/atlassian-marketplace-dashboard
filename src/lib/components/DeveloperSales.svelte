@@ -22,19 +22,19 @@
 
 	useAsyncEffect(
 		async (signal: AbortSignal): Promise<void> => {
-			if (!settings.vendorId || !dateRange.start || !dateRange.end) {
+			if (!settings.developerId || !dateRange.start || !dateRange.end) {
 				return;
 			}
 
 			const getTransactionsBySalesType = getTotalTransactions(
-				settings.vendorId,
+				settings.developerId,
 				"type",
 				dateRange.start,
 				dateRange.end,
 				signal
 			),
 				getTransactionsByPlatform = getTotalTransactions(
-					settings.vendorId,
+					settings.developerId,
 					"hosting",
 					dateRange.start,
 					dateRange.end,
@@ -49,7 +49,7 @@
 		(isLoading: boolean): boolean => (loading = isLoading),
 		(e: Error | null): Error | null => (error = e),
 		(): unknown => [
-			settings.vendorId,
+			settings.developerId,
 			dateRange.start,
 			dateRange.end
 		]

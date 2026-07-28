@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { Addon } from "$lib/api/client";
-	import AddonSales from "./AddonSales.svelte";
+	import type { App } from "$lib/api/client";
+	import AppSales from "./AppSales.svelte";
 	import Logo from "./Logo.svelte";
 
-	const { addon }: { addon: Addon } = $props();
+	const { app }: { app: App } = $props();
 
 </script>
 
 <li>
 	<header>
-		<Logo _embedded={addon._embedded}/>
-		<h1>{addon.name}</h1>
+		<Logo iconFileId={app.images.iconFileId}/>
+		<h1>{app.appName}</h1>
 	</header>
-	<AddonSales {addon}/>
+	<AppSales {app}/>
 </li>
 
 <style>

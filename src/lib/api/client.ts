@@ -1,26 +1,15 @@
 import { settings } from "$lib/state/settings.svelte";
 
-export interface Logo {
-	_embedded: {
-		logo: {
-			_links: {
-				image: {
-					href: string;
-				};
-			};
-		};
+export interface App {
+	productId: string;
+	appName: string;
+	images: {
+		iconFileId: string;
 	};
 }
 
-export interface Addon extends Logo {
-	key: string;
-	name: string;
-}
-
-export interface Addons {
-	_embedded: {
-		addons: Addon[];
-	};
+export interface Apps {
+	items: App[];
 }
 
 export type Platform = "Cloud" | "Data Center" | "Server";
@@ -64,7 +53,7 @@ export type TotalsByPlatform = Record<Platform, Total>;
 export type TotalsBySaleType = Record<SaleType, Total>;
 
 async function apiFetch<T>(path: string, signal: AbortSignal): Promise<T> {
-	const apiHost = `${settings.apiUrl}/rest/2/`,
+	const apiHost = `${settings.apiUrl}/marketplace/rest/3/`,
 		credentials = btoa(`${settings.userName}:${settings.password}`),
 		headers = { headers: { Authorization: `Basic ${credentials}` } },
 		response = await fetch(`${apiHost}${path}`, { ...headers, signal });
@@ -78,16 +67,19 @@ async function apiFetch<T>(path: string, signal: AbortSignal): Promise<T> {
 	return response.json() as Promise<T>;
 }
 
-export async function getAddons(
-	vendorId: string,
+export async function getApps(
+	developerId: string,
 	signal: AbortSignal,
-): Promise<Addons> {
-	return apiFetch<Addons>(`addons/vendor/${vendorId}`, signal);
+): Promise<Apps> {
+	return apiFetch<Apps>(
+		`product-listing/developer-space/${developerId}`,
+		signal,
+	);
 }
 
 export async function* getTransactions(
-	vendorId: string,
-	addonKey: string,
+	developerId: string,
+	productId: string,
 	startDate: string,
 	endDate: string,
 	signal: AbortSignal,
@@ -99,7 +91,7 @@ export async function* getTransactions(
 
 	do {
 		data = await apiFetch<Transactions>(
-			`vendors/${vendorId}/reporting/sales/transactions?addon=${addonKey}&limit=50&offset=${offset}&startDate=${startDate}&endDate=${endDate}`,
+			`reporting/developer-space/${developerId}/sales/transactions?productId=${productId}&limit=50&offset=${offset}&startDate=${startDate}&endDate=${endDate}`,
 			signal,
 		);
 		yield data.transactions;
@@ -108,14 +100,14 @@ export async function* getTransactions(
 }
 
 export async function getTotalTransactions(
-	vendorId: string,
+	developerId: string,
 	metric: "hosting" | "type",
 	startDate: string,
 	endDate: string,
 	signal: AbortSignal,
 ): Promise<TotalTransactions> {
 	return apiFetch<TotalTransactions>(
-		`vendors/${vendorId}/reporting/sales/transactions/${metric}?aggregation=month&startDate=${startDate}&endDate=${endDate}`,
+		`reporting/developer-space/${developerId}/sales/transactions/${metric}?aggregation=month&startDate=${startDate}&endDate=${endDate}`,
 		signal,
 	);
 }
